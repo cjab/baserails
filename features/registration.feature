@@ -18,3 +18,13 @@ Feature: Registration
     And fill in "Password confirmation" with "crocodile"
     And press "Register"
     Then I should have registered successfully
+
+  Scenario: Anonymous user fails to register
+    Given I am an anonymous user
+    When I go to the registration page
+    And fill in "Login" with "holden"
+    And fill in "Email" with "holden@dinocore.net"
+    And fill in "Password" with "crocodile"
+    And fill in "Password confirmation" with "alligator"
+    And press "Register"
+    Then I should have failed to register

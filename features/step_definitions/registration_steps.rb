@@ -11,3 +11,7 @@ end
 Then /^I should have registered successfully$/ do
   When 'I should see "Registration successful"'
 end
+
+Then /^I should have failed to register$/ do
+  When 'I should see "Registration failed"'
+end

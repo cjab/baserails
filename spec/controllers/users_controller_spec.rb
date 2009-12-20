@@ -23,7 +23,6 @@ describe UsersController do
   describe "create" do
 
     describe "with valid params" do
-      
       before(:each) do
         mock_user(:save => true)
         User.stub!(:new).and_return(mock_user)
@@ -43,7 +42,19 @@ describe UsersController do
         post :create, :user => Factory.attributes_for(:user)
         response.should redirect_to(root_url)
       end
-
     end
+
+    describe "with invalid params" do
+      before(:each) do
+        mock_user(:save => false)
+        User.stub!(:new).and_return(mock_user)
+      end
+
+      it "re-renders the new template" do
+        post :create, :user => Factory.attributes_for(:user)
+        response.should render_template('new')
+      end
+    end
+
   end
 end
