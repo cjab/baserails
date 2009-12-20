@@ -7,3 +7,7 @@ Then /^I should see the registration form$/ do
   response.should contain('Password')
   response.should contain('Password confirmation')
 end
+
+Then /^I should have registered successfully$/ do
+  When 'I should see "Registration successful"'
+end
