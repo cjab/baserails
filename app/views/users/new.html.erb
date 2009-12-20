@@ -1,0 +1,17 @@
+<% form_for @user, :url => users_path do |form| -%>
+
+  <%= form.label :login %>
+  <%= form.text_field :login %>
+
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+
+  <%= form.label :password %>
+  <%= form.text_field :password %>
+
+  <%= form.label :password_confirmation %>
+  <%= form.text_field :password_confirmation %>
+
+  <%= form.submit :register, :value => 'Register' %>
+
+<% end -%>
