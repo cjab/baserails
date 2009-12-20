@@ -1,0 +1,3 @@
+default: --color --drb
+autotest: --color --drb
+autotest-all: --color --drb
