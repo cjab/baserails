@@ -11,6 +11,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] = "cucumber"
   require File.expand_path(File.dirname(__FILE__) + '/../../config/environment')
   require 'cucumber/rails/world'
+
  
   require 'cucumber'
   # Comment out the next line if you don't want Cucumber Unicode support
@@ -24,10 +25,13 @@ Spork.prefork do
     config.mode = :rails
     config.open_error_files = false # Set to true if you want error pages to pop up in the browser
   end
+
+  require 'factory_girl'
 end
  
 Spork.each_run do
   # This code will be run each time you start cucumber.
+  require 'spec/factories'
 
   # If you set this to true, each scenario will run in a database transaction.
   # You can still turn off transactions on a per-scenario basis, simply tagging 
