@@ -13,5 +13,15 @@ describe UserSessionsController do
         :action => 'new').should == '/login'
     end
 
+    it "recognizes /logout" do
+      params_from(:get, '/logout').should == { :controller => 'user_sessions',
+        :action => 'destroy' }
+    end
+
+    it "generates /logout" do
+      route_for(:controller => 'user_sessions', 
+        :action => 'destroy').should == '/logout'
+    end
+
   end
 end

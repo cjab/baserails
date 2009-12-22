@@ -33,3 +33,9 @@ Feature: Authentication
     |        | alligator |
     | pheobe | alligator |
     | pheobe |           |
+
+  Scenario: Allow a logged in user to log out
+    Given I am logged in as "holden" with password "crocodile"
+    When I go to the log out page
+    Then I should be on the log in page
+    And I should be logged out

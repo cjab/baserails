@@ -6,6 +6,10 @@ describe UserSessionsController do
     @mock_user_session ||= mock_model(UserSession, stubs)
   end
 
+  def mock_user(stubs={})
+    @mock_user ||= mock_model(User, stubs)
+  end
+
   describe "#new" do
     it "assigns a new user session to @user_session" do
       UserSession.should_receive(:new).and_return(mock_user_session)
@@ -58,6 +62,31 @@ describe UserSessionsController do
         post :create, :user_session => Factory.attributes_for(:user_session)
         flash[:error].should == 'Failed to log in!'
       end
+    end
+  end
+
+
+  describe "#destroy" do
+    before(:each) do
+      activate_authlogic
+      UserSession.stub!(:find).and_return(mock_user_session)
+      mock_user_session.stub!(:user).and_return(mock_user)
+      mock_user_session.stub!(:destroy)
+    end
+
+    it "should destroy the session" do
+      mock_user_session.should_receive(:destroy)
+      post :destroy
+    end
+
+    it "should redirect to the login page" do
+      post :destroy
+      response.should redirect_to(login_url)
+    end
+
+    it "should display success message" do
+      post :destroy
+      flash[:notice].should == "Logged out successfully!"
     end
   end
 

@@ -14,6 +14,8 @@ module NavigationHelpers
       '/register'
     when /the log in page/
       '/login'
+    when /the log out page/
+      '/logout'
     
     # Add more mappings here.
     # Here is a more fancy example:

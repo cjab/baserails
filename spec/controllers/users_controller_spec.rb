@@ -6,7 +6,7 @@ describe UsersController do
     @mock_user ||= mock_model(User, stubs)
   end
   
-  describe "new" do
+  describe "#new" do
 
     it "assigns a new user to @user" do
       User.should_receive(:new).and_return(mock_user)
@@ -20,7 +20,7 @@ describe UsersController do
     end
   end
 
-  describe "create" do
+  describe "#create" do
 
     describe "with valid params" do
       before(:each) do

@@ -13,4 +13,10 @@ class UserSessionsController < ApplicationController
       render :action => 'new'
     end
   end
+
+  def destroy
+    current_user_session.destroy
+    flash[:notice] = "Logged out successfully!"
+    redirect_to login_path
+  end
 end
