@@ -1,7 +1,7 @@
 log/*.log
 tmp/**/*
 config/database.yml
-db/*.sqlite3
+db/*.sqlite3*
 doc/*.autosave
 doc/*.dia~
 *.swp
