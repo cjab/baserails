@@ -5,7 +5,12 @@ class UserSessionsController < ApplicationController
 
   def create
     @user_session = UserSession.new(params[:user_session])
-    flash[:notice] = 'Logged in successfully!'
-    redirect_to root_path
+    if @user_session.save
+      flash[:notice] = 'Logged in successfully!'
+      redirect_to root_path
+    else
+      flash[:error] = 'Failed to log in!'
+      render :action => 'new'
+    end
   end
 end

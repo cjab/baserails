@@ -42,6 +42,23 @@ describe UserSessionsController do
         flash[:notice].should == 'Logged in successfully!'
       end
     end
+
+    describe "with invalid params" do
+      before(:each) do
+        mock_user_session(:save => false)
+        UserSession.stub!(:new).and_return(mock_user_session)
+      end
+
+      it "re-renders the new template" do
+        post :create, :user_session => Factory.attributes_for(:user_session)
+        response.should render_template('new')
+      end
+
+      it "displays an error message" do
+        post :create, :user_session => Factory.attributes_for(:user_session)
+        flash[:error].should == 'Failed to log in!'
+      end
+    end
   end
 
 end

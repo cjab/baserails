@@ -12,6 +12,24 @@ Feature: Authentication
     Given I am "holden" with a password "crocodile"
     When I go to the log in page
     And fill in "Login" with "holden"
-    And fill in "Password" with "password"
+    And fill in "Password" with "crocodile"
     And I press "Log in"
     Then I should be logged in
+
+  Scenario Outline: Do not allow a user with invalid credentials to log in
+    Given I am "holden" with a password "crocodile"
+    When I go to the log in page
+    And fill in "Login" with "<login>"
+    And fill in "Password" with "<password>"
+    And I press "Log in"
+    Then I should not be logged in
+
+  Examples:
+    | login  | password  |
+    | holden |           |
+    |        | crocodile |
+    |        |           |
+    | holden | alligator |
+    |        | alligator |
+    | pheobe | alligator |
+    | pheobe |           |
